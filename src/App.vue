@@ -33,7 +33,7 @@ export default {
     const properties = { hintContent: `${this.bus.name}` };
     const options = {
       iconLayout: 'default#image',
-      iconImageHref: '/icon_bus.svg',
+      iconImageHref: `${process.env.BASE_URL}icon_bus.svg`,
       iconImageSize: [40, 40], // [ширина, высота]
       iconImageOffset: [-20, -20],
     };
