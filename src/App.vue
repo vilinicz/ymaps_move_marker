@@ -2,6 +2,7 @@
   <div id="app">
     <div id="map" class="map"></div>
     <a href="https://github.com/vilinicz/ymaps_move_marker/blob/master/src/App.vue" class="link">Go to Github</a>
+    <div class='change-icon' @click="changeIcon">Change Icon</div>
   </div>
 </template>
 
@@ -19,6 +20,8 @@ export default {
         position: [57.81108739030145, 28.324718888257294],
       },
       busMarker: null,
+
+      currentIcon: 'icon_bus.svg',
     }
   },
 
@@ -33,7 +36,7 @@ export default {
     const properties = { hintContent: this.bus.name };
     const options = {
       iconLayout: 'default#image',
-      iconImageHref: `${process.env.BASE_URL}icon_bus.svg`,
+      iconImageHref: `${process.env.BASE_URL}${this.currentIcon}`,
       iconImageSize: [40, 40],
       iconImageOffset: [-20, -20],
     };
@@ -54,13 +57,18 @@ export default {
         const random2 = ((Math.floor((Math.random()*10)+1)) * (Math.random() < 0.5 ? -1 : 1) * 0.0005);
         this.bus.position[0] += random1;
         this.bus.position[1] -= random2;
-        console.log('Bus updated. New position:', this.bus.position);
+        // console.log('Bus updated. New position:', this.bus.position);
 
         // ### UPDATE MARKER COORDINATES WITHOUT RERENDER ### //
         this.busMarker.geometry.setCoordinates(this.bus.position);
 
-      }, 2000);
-    }
+      }, 1000);
+    },
+
+    changeIcon() {
+      this.currentIcon = (this.currentIcon === 'icon_bus.svg' ? 'icon_bus_default.svg' : 'icon_bus.svg');
+      this.busMarker.options.set('iconImageHref', `${process.env.BASE_URL}${this.currentIcon}`);
+    },
   },
 }
 </script>
@@ -81,7 +89,7 @@ export default {
     height: 100vh;
   }
 
-  .link {
+  .link, .change-icon {
     position: absolute;
     top: 3rem;
     right: 10px;
@@ -93,6 +101,11 @@ export default {
     font-weight: bold;
     color: dodgerblue;
     text-decoration: none;
+  }
+
+  .change-icon {
+    top: 6rem;
+    cursor: pointer;
   }
 }
 </style>
