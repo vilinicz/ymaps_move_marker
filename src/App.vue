@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="map" class="map"></div>
-    <a href="https://github.com/vilinicz/ymaps_move_marker" class="link">Go to Github</a>
+    <a href="https://github.com/vilinicz/ymaps_move_marker/blob/master/src/App.vue" class="link">Go to Github</a>
   </div>
 </template>
 
@@ -16,7 +16,6 @@ export default {
       bus: {
         id: '1',
         name: 'Karl Popper',
-        status: 'On the road',
         position: [57.81108739030145, 28.324718888257294],
       },
       busMarker: null,
@@ -30,17 +29,19 @@ export default {
       zoom: 13
     });
 
-    const geometry = { type: 'Point', coordinates: [this.bus.position[0], this.bus.position[1]] };
-    const properties = { hintContent: `${this.bus.name}` };
+    const geometry = { type: 'Point', coordinates: this.bus.position};
+    const properties = { hintContent: this.bus.name };
     const options = {
       iconLayout: 'default#image',
       iconImageHref: `${process.env.BASE_URL}icon_bus.svg`,
       iconImageSize: [40, 40],
       iconImageOffset: [-20, -20],
     };
-    this.busMarker = new window.ymaps.GeoObject({ geometry, properties }, options);
-    this.map.geoObjects.add(this.busMarker);
 
+    // ### CREATE MARKER AND SAVE IT TO THE VUE DATA ### //
+    this.busMarker = new window.ymaps.GeoObject({ geometry, properties }, options);
+
+    this.map.geoObjects.add(this.busMarker);
     this.updateBus();
   },
 
