@@ -1,26 +1,8 @@
-# smooth_marker
+##### For demo purposes only
 
-## Project setup
-```
-npm install
-```
+Change ymaps Placemark position with dynamic coordinates
+___
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+- vue
+- ymaps
+- hands
