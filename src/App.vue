@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="map" class="map"></div>
+    <a href="https://github.com/vilinicz/ymaps_move_marker" class="link">Go to Github</a>
   </div>
 </template>
 
@@ -34,7 +35,7 @@ export default {
     const options = {
       iconLayout: 'default#image',
       iconImageHref: `${process.env.BASE_URL}icon_bus.svg`,
-      iconImageSize: [40, 40], // [ширина, высота]
+      iconImageSize: [40, 40],
       iconImageOffset: [-20, -20],
     };
     this.busMarker = new window.ymaps.GeoObject({ geometry, properties }, options);
@@ -64,6 +65,10 @@ export default {
 </script>
 
 <style lang="scss">
+  body, html {
+    margin: 0;
+    padding: 0;
+  }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -73,6 +78,20 @@ export default {
   .map {
     width: 100vw;
     height: 100vh;
+  }
+
+  .link {
+    position: absolute;
+    top: 3rem;
+    right: 10px;
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 1px 6px rgba(#000, 0.25);
+    z-index: 999;
+    border-radius: 4px;
+    font-weight: bold;
+    color: dodgerblue;
+    text-decoration: none;
   }
 }
 </style>
